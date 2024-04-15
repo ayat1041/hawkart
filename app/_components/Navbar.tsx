@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 interface Link {
   path: string;
   pathName: string | JSX.Element;
 }
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
   const links: Link[] = [
     {
       path: "/",
@@ -33,18 +37,18 @@ export default function Navbar() {
   ];
   return (
     <>
-      <nav className="flex text-white w-full items-center bg-orange-600 justify-between px-1 md:px-2 lg:px-6 py-1">
+      <nav className="flex flex-col md:flex-row text-white w-full items-center bg-gradient-to-b from-orange-600 to-red-400 justify-between px-1 md:px-2 lg:px-6 py-1">
         <div className="font-bold tracking-wide">HawKart</div>
-        <div className="font-semibold text-sm">
-          Call : +028991096 | Email : hawkart@gmail.com
+        <div className="font-semibold text-xs md:text-sm">
+          Help : +028991096 | Email : hawkart@gmail.com
         </div>
       </nav>
       {/* SECOND NAV */}
-      <div className="flex items-center justify-between text-black bg-red-200 ps-2 sticky top-0 left-0 right-0">
-        <div className="flex items-center gap-2 ml-auto flex-row-reverse">
-          <div className="p-1 shadow-sm border-[1px] border-red-200 m-1 bg-red-100">
+      <div className="flex items-center justify-between text-black bg-red-400 ps-2 sticky top-0 left-0 right-0">
+        <div className="flex items-center gap-2 ml-auto flex-row-reverse w-full lg:w-1/2">
+          <div className="p-1 shadow-sm border-[1px] border-red-200 m-1 bg-red-100 w-full">
             <input
-              className="outline-none bg-transparent text-sm"
+              className="outline-none bg-transparent text-sm w-full"
               type="text"
               name=""
               id=""
@@ -57,14 +61,14 @@ export default function Navbar() {
             height="32"
             viewBox="0 -960 960 960"
             width="32"
-            className="transition-all duration-250 ease-in hover:scale-[0.85] fill-white opacity-90 drop-shadow-sm shadow-red-500"
+            className="transition-all duration-250 ease-in hover:scale-[0.85] fill-slate-50 opacity-90 drop-shadow-sm"
           >
             <path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z" />
           </svg>
           <Button
             variant="default"
             size="sm"
-            className="bg-red-400 hover:bg-red-600 text-sm font-semibold rounded-none my-1 text-white"
+            className="bg-orange-600 hover:bg-red-600 text-sm font-semibold rounded-none my-1 text-white"
           >
             Find
           </Button>
@@ -79,6 +83,26 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        <div
+          className="hamburger flex flex-col gap-[3px] bg-slate-50 mx-1 p-1 rounded-sm text-center"
+          onClick={() => setOpen(!open)}
+        >
+          <div
+            className={`w-4 h-[3px] rounded-lg bg-orange-500 transition-transform duration-300 ${
+              open ? "rotate-45 translate-y-[1px] w-6" : ""
+            } origin-top-left`}
+          ></div>
+          <div
+            className={`w-4 h-[3px] rounded-lg bg-orange-500 transition-opacity duration-300 ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          ></div>
+          <div
+            className={`w-4 h-[3px] rounded-lg bg-orange-500 transition-transform duration-300 ${
+              open ? "-rotate-45 -translate-y-[1px] w-6" : ""
+            } origin-bottom-left`}
+          ></div>
+        </div>
       </div>
     </>
   );

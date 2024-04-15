@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={inter.className}
       >
-        <div className="relative flex flex-col flex-wrap w-full max-w-[1440px] min-h-screen bg-pink-400 mx-auto box-border">
+        <div className="relative flex flex-col flex-wrap w-full max-w-[1440px] min-h-screen mx-auto box-border">
         <Navbar/>
         {children}
         </div>
